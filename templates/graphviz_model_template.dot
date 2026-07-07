@@ -1,0 +1,13 @@
+digraph Model {
+  rankdir=LR;
+  node [shape=box, style="rounded"];
+  IV [label="Independent Variable"];
+  MED [label="Mediator"];
+  DV [label="Dependent Variable"];
+  MOD [label="Moderator"];
+  CTRL [label="Control Variables"];
+  IV -> MED;
+  MED -> DV;
+  MOD -> MED [style=dashed, label="moderates"];
+  CTRL -> DV [style=dashed, label="controls"];
+}
