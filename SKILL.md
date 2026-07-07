@@ -86,7 +86,18 @@ When image export tools are unavailable, still generate Mermaid and Graphviz sou
 
 ## Supported Model Types
 
-The Skill supports direct effect, mediation, moderation, moderated mediation, mediated moderation, chain mediation, parallel mediation, multi-level, configuration, and process models.
+The Skill supports:
+
+1. Direct effect model.
+2. Mediation model.
+3. Moderation model.
+4. Moderated mediation model.
+5. Mediated moderation model.
+6. Chain mediation model.
+7. Parallel mediation model.
+8. Multi-level model.
+9. Configuration model, including fsQCA-oriented causal recipes.
+10. Process model converted from qualitative mechanisms.
 
 Use only model types supported by the selected topic and available evidence. Do not choose a complex model only to make the paper look richer.
 
@@ -116,10 +127,88 @@ Use only model types supported by the selected topic and available evidence. Do 
 9. Control paths should use dashed arrows pointing to the dependent variable.
 10. Higher-order constructs should distinguish high-order constructs from dimensions.
 
-## Helper Files
+## Hypothesis Rules
 
-The full project structure is under `skills/paper-model-builder/`, including prompts, scripts, templates, input examples, and output placeholders.
+For each hypothesis, provide:
+
+1. Hypothesis ID.
+2. Path type.
+3. Source variable.
+4. Target variable.
+5. Mediator or moderator when applicable.
+6. Expected direction.
+7. Hypothesis text in Chinese.
+8. Hypothesis text in English.
+9. Theory rationale.
+10. Evidence source from topic-builder outputs.
+11. Confidence level.
+12. Reviewer risk.
+
+Do not write a hypothesis when the path lacks a defensible theoretical rationale.
+
+## Logic Check
+
+Review every model for:
+
+1. Theoretical contribution.
+2. Research question clarity.
+3. Variable role consistency.
+4. Mechanism strength.
+5. Boundary condition necessity.
+6. Model complexity.
+7. Method fit.
+8. Data availability.
+9. Common method bias risk.
+10. Endogeneity risk.
+11. Construct overlap risk.
+12. Reviewer objections.
+13. Practical revision suggestions.
+
+## Paper Model Section
+
+Generate a writing-ready section that includes:
+
+1. Research background.
+2. Management problem.
+3. Theory gap.
+4. Proposed model logic.
+5. Hypothesis development.
+6. Variable measurement suggestions.
+7. Method and data suggestions.
+8. Theoretical contributions.
+9. Practical implications.
+10. Review risk and revision suggestions.
+
+## Quality Control
+
+Strictly follow these rules:
+
+1. Do not fabricate literature facts, variables, theories, paths, hypotheses, journals, or DOI information.
+2. Use `not confirmed`, `insufficient evidence`, or `low confidence` when evidence is incomplete.
+3. Separate source-supported content from researcher-proposed extensions.
+4. Mark whether a path is directly supported, indirectly inferred, or newly proposed.
+5. Keep diagrams consistent with the hypothesis table and model specification.
+6. Keep reviewer evaluation consistent with the final model.
+
+## Recommended Commands
+
+Use the helper scripts when the local environment permits:
+
+```bash
+python scripts/read_topic_builder_outputs.py --input ../paper-topic-builder/output --output output/source_index.json
+python scripts/build_model_spec.py --source output/source_index.json --config input/selected_model_config.json --output output/model_spec.json
+python scripts/generate_hypothesis_table.py --model output/model_spec.json --output-md output/hypothesis_table.md --output-xlsx output/hypothesis_table.xlsx
+python scripts/generate_mermaid_diagram.py --model output/model_spec.json --output output/model_diagram.mmd
+python scripts/generate_graphviz_diagram.py --model output/model_spec.json --output output/model_diagram.dot
+python scripts/validate_model_logic.py --model output/model_spec.json --output output/model_logic_check.md
+```
 
 ## Final Response
 
-When the Skill finishes, report which source files were used, which outputs were generated, which variables or paths are low confidence, which exports failed or require manual conversion, and the next step for turning the model into an Introduction and Hypotheses section.
+When the Skill finishes, report:
+
+1. Which source files were used.
+2. Which outputs were generated.
+3. Which variables or paths are low confidence.
+4. Which exports failed or require manual conversion.
+5. The next step for turning the model into an Introduction and Hypotheses section.
