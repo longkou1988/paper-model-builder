@@ -23,10 +23,15 @@ Restart Codex, then use:
 $paper-model-builder
 ```
 
-## Main Skill File
+## Repository Structure
 
-- `SKILL.md` is provided at the repository root for direct Codex installation.
-- `skills/paper-model-builder/` contains the complete project structure, including prompts, scripts, templates, input examples, and output placeholders.
+- `SKILL.md`: main Codex Skill file.
+- `AGENTS.md`: project-specific working rules.
+- `input/`: optional user-selected topic and model configuration files.
+- `prompts/`: staged prompts for model building, hypothesis generation, diagramming, and quality control.
+- `scripts/`: helper scripts for source indexing, model specification, hypothesis tables, diagrams, and logic checks.
+- `templates/`: reusable model, hypothesis, diagram, and review templates.
+- `output/`: generated model outputs.
 
 ## Usage Example
 
