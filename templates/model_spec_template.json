@@ -1,0 +1,47 @@
+{
+  "topic": {
+    "title_cn": "",
+    "title_en": "",
+    "core_research_question": "",
+    "management_problem": "",
+    "theory_gap": "",
+    "theoretical_foundations": [],
+    "context": "",
+    "research_object": ""
+  },
+  "variables": [
+    {
+      "id": "",
+      "name_cn": "",
+      "name_en": "",
+      "role": "independent|dependent|mediator|moderator|control|dimension",
+      "construct_level": "first-order|second-order|dimension|item|not_applicable",
+      "definition": "",
+      "measurement_suggestion": "",
+      "evidence_source": "",
+      "confidence": "high|medium|low"
+    }
+  ],
+  "paths": [
+    {
+      "id": "H1",
+      "type": "direct|mediation|moderation|moderated_mediation|control|configuration",
+      "source": "",
+      "target": "",
+      "mediator": "",
+      "moderator": "",
+      "direction": "positive|negative|curvilinear|conditional|unknown",
+      "rationale": "",
+      "evidence_source": "",
+      "confidence": "high|medium|low"
+    }
+  ],
+  "method": {
+    "recommended_design": "",
+    "data_source": "",
+    "sample": "",
+    "analysis_method": "",
+    "robustness_checks": []
+  },
+  "risks": []
+}
