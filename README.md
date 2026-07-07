@@ -25,7 +25,20 @@ $paper-model-builder
 
 ## Main Skill File
 
-See `skills/paper-model-builder/skill.md`.
+- `SKILL.md` is provided at the repository root for direct Codex installation.
+- `skills/paper-model-builder/` contains the complete project structure, including prompts, scripts, templates, input examples, and output placeholders.
+
+## Usage Example
+
+```text
+使用 $paper-model-builder，基于 paper-topic-builder 的 output 文件夹，为我选择的选题生成研究模型、假设表、模型图和审稿人视角评价。
+```
+
+You can also provide a specific folder:
+
+```text
+使用 $paper-model-builder，读取 /path/to/paper-topic-builder/output，并基于 final_research_story.md 的第 1 个选题生成模型。
+```
 
 ## Author
 
