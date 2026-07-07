@@ -5,11 +5,16 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 
 
-def node_id(name: str) -> str:
-    return "N" + str(abs(hash(name)))
+def node_id(index: int) -> str:
+    return f"N{index}"
+
+
+def clean_label(text: str) -> str:
+    return re.sub(r"[\r\n]+", " ", text).replace('"', "'")
 
 
 def main() -> None:
@@ -22,21 +27,32 @@ def main() -> None:
     variables = model.get("variables", [])
     paths = model.get("paths", [])
 
-    labels = {item.get("name", "未命名变量"): node_id(item.get("name", "未命名变量")) for item in variables}
+    labels = {}
     lines = ["flowchart LR"]
-    for name, nid in labels.items():
-        role = next((item.get("role", "") for item in variables if item.get("name") == name), "")
-        lines.append(f'  {nid}["{name}<br/>{role}"]')
+    for index, item in enumerate(variables, start=1):
+        name = item.get("name", "未命名变量")
+        role = item.get("role", "")
+        nid = node_id(index)
+        labels[name] = nid
+        lines.append(f'  {nid}["{clean_label(name)}<br/>{clean_label(role)}"]')
+
+    next_index = len(labels) + 1
     for path in paths:
         source = path.get("source", "")
         target = path.get("target", "")
         if not source or not target:
             continue
-        sid = labels.setdefault(source, node_id(source))
-        tid = labels.setdefault(target, node_id(target))
+        if source not in labels:
+            labels[source] = node_id(next_index)
+            lines.append(f'  {labels[source]}["{clean_label(source)}"]')
+            next_index += 1
+        if target not in labels:
+            labels[target] = node_id(next_index)
+            lines.append(f'  {labels[target]}["{clean_label(target)}"]')
+            next_index += 1
         arrow = "-.->" if path.get("type") in {"moderation", "control"} else "-->"
-        label = path.get("id", "")
-        lines.append(f"  {sid} {arrow}|{label}| {tid}")
+        label = clean_label(path.get("id", ""))
+        lines.append(f"  {labels[source]} {arrow}|{label}| {labels[target]}")
 
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)
