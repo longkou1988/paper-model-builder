@@ -129,8 +129,11 @@ Use only model types supported by the selected topic and available evidence. Do 
 6. Direct effects should use solid arrows.
 7. Mediation paths should use solid arrows.
 8. Moderation effects should use dashed arrows pointing to the moderated path or interaction term.
-9. Control paths should use dashed arrows pointing to the dependent variable.
-10. Higher-order constructs should distinguish high-order constructs from dimensions.
+9. A moderator must not be drawn as a dashed arrow directly pointing to the dependent node of the moderated relationship. For example, if `W` moderates `X -> M`, draw `W -.-> X -> M path`, not `W -.-> M`.
+10. If the target diagram format cannot attach an arrow to an edge, create a small path anchor node on the moderated path and connect the moderator to that anchor. This applies to Mermaid, Graphviz/DOT, SVG/PNG exports, and draw.io XML.
+11. When using a path anchor node, label the dashed arrow as moderation, such as `H6 moderation` or `H6 调节路径`, so readers do not mistake it for a direct effect.
+12. Control paths should use dashed arrows pointing to the dependent variable.
+13. Higher-order constructs should distinguish high-order constructs from dimensions.
 
 ## Hypothesis Rules
 
