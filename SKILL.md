@@ -1,3 +1,8 @@
+---
+name: paper-model-builder
+description: Build empirical research models from selected paper topics or literature evidence, including variable roles, model structure, hypotheses, diagrams, method suggestions, reviewer evaluation, and paper-ready model logic. Use when asked to turn a research topic into a complete empirical paper model.
+---
+
 # paper-model-builder
 
 ## Skill Name
